@@ -1,5 +1,3 @@
-import { clsx } from "clsx";
-
 export const WinnerModal = ({ winner, resetGame }) => {
   if (winner === null) return null;
   const winnerMessage =
