@@ -12,6 +12,9 @@ export default {
         "twitter-blueLight": "#1c93e4",
         "twitter-white": "#ffffff"
       },
+      boxShadow: {
+        'inset': 'inset 0 0 10px #000000'
+      }
     },
   },
   plugins: [],

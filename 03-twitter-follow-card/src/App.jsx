@@ -8,12 +8,21 @@ function App() {
       <main className="flex justify-center items-center h-screen">
         <section className="flex flex-col bg-twitter-blue w-[348px] h-[302px] rounded-2xl">
           <TwitterTitleCard>Who to follow</TwitterTitleCard>
-          <TwitterUserCard name={"𓆰 𓆪"} username={"SebasTiianMC_"} />
+          <TwitterUserCard
+            name={"𓆰 𓆪"}
+            username={"SebasTiianMC_"}
+            isFollowing
+          />
           <TwitterUserCard
             name={"La Juanita⭐⭐⭐"}
             username={"so_ferrari_CARP"}
+            isFollowing={false}
           />
-          <TwitterUserCard name={"KRÜ ATARAX1A"} username={"atarax1a_a"} />
+          <TwitterUserCard
+            name={"KRÜ ATARAX1A"}
+            username={"atarax1a_a"}
+            isFollowing={false}
+          />
           <TwitterButtonCard>Show more</TwitterButtonCard>
         </section>
       </main>
