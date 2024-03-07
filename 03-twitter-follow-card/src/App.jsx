@@ -6,12 +6,15 @@ function App() {
   return (
     <>
       <main className="flex justify-center items-center h-screen">
-        <section className="bg-twitter-blue w-[348px] h-[302px] rounded-2xl">
+        <section className="flex flex-col bg-twitter-blue w-[348px] h-[302px] rounded-2xl">
           <TwitterTitleCard>Who to follow</TwitterTitleCard>
-          <TwitterUserCard />
-          <TwitterUserCard />
-          <TwitterUserCard />
-          <TwitterButtonCard>show more</TwitterButtonCard>
+          <TwitterUserCard name={"𓆰 𓆪"} username={"SebasTiianMC_"} />
+          <TwitterUserCard
+            name={"La Juanita⭐⭐⭐"}
+            username={"so_ferrari_CARP"}
+          />
+          <TwitterUserCard name={"KRÜ ATARAX1A"} username={"atarax1a_a"} />
+          <TwitterButtonCard>Show more</TwitterButtonCard>
         </section>
       </main>
     </>
