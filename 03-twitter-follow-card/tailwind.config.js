@@ -10,6 +10,7 @@ export default {
         "twitter-lighter": "#E7E9EA",
         "twitter-gray": "#1D1F23",
         "twitter-blueLight": "#1c93e4",
+        "twitter-white": "#ffffff"
       },
     },
   },
