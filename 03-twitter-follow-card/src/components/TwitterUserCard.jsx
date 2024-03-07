@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { clsx } from "clsx";
 
-export const TwitterUserCard = ({ name, username }) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+export const TwitterUserCard = ({ name, username, initialIsFollowing }) => {
+  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [isHover, setIsHover] = useState(false);
   const image = `https://unavatar.io/twitter/${username}`;
   const alt = `Profile picture of ${name}`;

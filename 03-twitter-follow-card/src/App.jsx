@@ -11,17 +11,17 @@ function App() {
           <TwitterUserCard
             name={"𓆰 𓆪"}
             username={"SebasTiianMC_"}
-            isFollowing
+            initialIsFollowing
           />
           <TwitterUserCard
             name={"La Juanita⭐⭐⭐"}
             username={"so_ferrari_CARP"}
-            isFollowing={false}
+            initialIsFollowing={false}
           />
           <TwitterUserCard
             name={"KRÜ ATARAX1A"}
             username={"atarax1a_a"}
-            isFollowing={false}
+            initialIsFollowing={false}
           />
           <TwitterButtonCard>Show more</TwitterButtonCard>
         </section>
