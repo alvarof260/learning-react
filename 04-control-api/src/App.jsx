@@ -1,23 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
 import { useCatImage } from "../hooks/useCatImage";
-import { getRandomFact } from "../services/fact";
+import { useCatFact } from "../hooks/useCatFact";
 
 function App() {
-  const [fact, setFact] = useState(null);
+  const { fact, refreshRandomFact } = useCatFact();
   const { image } = useCatImage({ fact });
 
-  useEffect(() => {
-    getRandomFact()
-      .then((fact) => setFact(fact))
-      .catch((error) => console.error(error));
-  }, []);
-
   const handleClick = () => {
-    getRandomFact()
-      .then((fact) => setFact(fact))
-      .catch((error) => console.error(error));
+    refreshRandomFact();
   };
+
   return (
     <>
       <main className="pt-4 ">
