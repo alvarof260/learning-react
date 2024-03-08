@@ -1,33 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
+import { useCatImage } from "../hooks/useCatImage";
 import { getRandomFact } from "../services/fact";
-import { IMAGEAPI_URL } from "./constants";
 
 function App() {
   const [fact, setFact] = useState(null);
-  const [image, setImage] = useState(null);
+  const { image } = useCatImage({ fact });
 
   useEffect(() => {
     getRandomFact()
       .then((fact) => setFact(fact))
       .catch((error) => console.error(error));
   }, []);
-
-  useEffect(() => {
-    if (!fact) return;
-    const word = fact.split(" ")[0];
-    fetch(`${IMAGEAPI_URL}/cat/says/${word}?size=50&color=red&json=true`)
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-      })
-      .then((data) => {
-        const { _id } = data;
-        const url = `${IMAGEAPI_URL}/cat/${_id}/says/${word}`;
-        setImage(url);
-      })
-      .catch((error) => console.error(error));
-  }, [fact]);
 
   const handleClick = () => {
     getRandomFact()
