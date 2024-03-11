@@ -1,12 +1,12 @@
-import response from "./mocks/response.json";
+import responseJSON from "./mocks/response.json";
 import noResponse from "./mocks/error-response.json";
 
+import { Movies } from "./components/Movies";
+
 function App() {
-  const responseMovie = response?.Search;
-  const isMovies = responseMovie?.length > 0;
   return (
     <>
-      <header className="flex flex-col justify-center items-center pt-4 gap-3">
+      <header className="flex flex-col justify-center items-center py-4 gap-3 border border-solid border-b-slate-700 border-opacity-10">
         <h1 className=" text-4xl font-bold text-viking-600">Movie Search</h1>
         <form className="flex justify-center items-center gap-6">
           <input
@@ -20,31 +20,7 @@ function App() {
         </form>
       </header>
       <main>
-        <section className="w-full pt-6 px-4">
-          {isMovies ? (
-            <ul className=" grid grid-cols-1 place-items-center w-full gap-10">
-              {responseMovie.map((movie) => {
-                return (
-                  <li key={movie.imdbID} className="flex flex-col items-center">
-                    <h2 className=" text-xl text-viking-600 font-medium">
-                      {movie.Title}
-                    </h2>
-                    <p className="text-viking-400 text-base">{movie.Year}</p>
-                    <img
-                      className="rounded-md w-48 h-72 object-cover shadow-md"
-                      src={movie.Poster}
-                      alt={`poster of ${movie.Title}`}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <>
-              <h2>Movies not found</h2>
-            </>
-          )}
-        </section>
+        <Movies response={responseJSON} />
       </main>
     </>
   );
