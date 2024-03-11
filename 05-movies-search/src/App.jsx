@@ -1,15 +1,12 @@
-import { useState, useEffect, useRef } from "react";
 import { clsx } from "clsx";
 
-import responseJSON from "./mocks/response.json";
-import noResponse from "./mocks/error-response.json";
-
+import { useSearch } from "./hooks/useSearch";
+import { useMovies } from "./hooks/useMovies";
 import { Movies } from "./components/Movies";
 
 function App() {
-  const [search, setSearch] = useState("");
-  const [error, setError] = useState(null);
-  const isFirstRender = useRef(true);
+  const { movies } = useMovies();
+  const { search, setSearch, error } = useSearch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,27 +20,6 @@ function App() {
     }
     setSearch(newSearch);
   };
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = search === "";
-      return;
-    }
-
-    if (search === "") {
-      setError("cannot be empty, please enter a movie name");
-      return;
-    }
-
-    if (search.length < 3) {
-      setError(
-        "cannot be less than 3 characters, please enter a valid movie name"
-      );
-      return;
-    }
-
-    setError(null);
-  }, [search]);
 
   console.log("rendering App");
   return (
@@ -75,7 +51,7 @@ function App() {
         {error && <p className="text-red-500 text-xs">{error}</p>}
       </header>
       <main>
-        <Movies response={responseJSON} />
+        <Movies response={movies} />
       </main>
     </>
   );
