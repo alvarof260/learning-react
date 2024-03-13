@@ -5,12 +5,12 @@ import { useMovies } from "./hooks/useMovies";
 import { Movies } from "./components/Movies";
 
 function App() {
-  const { movies } = useMovies();
   const { search, setSearch, error } = useSearch();
+  const { movies, getMovies } = useMovies({ search });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ search });
+    getMovies(search);
   };
 
   const handleChange = (e) => {
