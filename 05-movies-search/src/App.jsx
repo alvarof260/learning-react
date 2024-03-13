@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import debounce from "just-debounce-it";
 
 import { useSearch } from "./hooks/useSearch";
 import { useMovies } from "./hooks/useMovies";
@@ -9,6 +10,13 @@ function App() {
   const [sort, setSort] = useState(false);
   const { search, setSearch, error } = useSearch();
   const { movies, getMovies, loading } = useMovies({ search, sort });
+
+  const debouncedGetMovies = useCallback(
+    debounce((search) => {
+      getMovies({ search });
+    }, 300),
+    [getMovies]
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +29,7 @@ function App() {
       return;
     }
     setSearch(newSearch);
+    debouncedGetMovies(newSearch);
   };
 
   const handleSort = () => {
