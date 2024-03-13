@@ -1,16 +1,18 @@
 import { clsx } from "clsx";
+import { useEffect, useState } from "react";
 
 import { useSearch } from "./hooks/useSearch";
 import { useMovies } from "./hooks/useMovies";
 import { Movies } from "./components/Movies";
 
 function App() {
+  const [sort, setSort] = useState(false);
   const { search, setSearch, error } = useSearch();
-  const { movies, getMovies, loading } = useMovies({ search });
+  const { movies, getMovies, loading } = useMovies({ search, sort });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getMovies(search);
+    getMovies({ search });
   };
 
   const handleChange = (e) => {
@@ -21,7 +23,10 @@ function App() {
     setSearch(newSearch);
   };
 
-  console.log("rendering App");
+  const handleSort = () => {
+    setSort(!sort);
+  };
+
   return (
     <>
       <header className="flex flex-col justify-center items-center py-4 gap-3 border border-solid border-b-slate-700 border-opacity-10">
@@ -40,6 +45,12 @@ function App() {
             onChange={handleChange}
             value={search}
             placeholder="Avengers, Flash, Matrix..."
+          />
+          <input
+            type="checkbox"
+            name="sort"
+            checked={sort}
+            onChange={handleSort}
           />
           <button
             disabled={error !== null || search === ""}
