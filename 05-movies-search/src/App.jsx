@@ -6,7 +6,7 @@ import { Movies } from "./components/Movies";
 
 function App() {
   const { search, setSearch, error } = useSearch();
-  const { movies, getMovies } = useMovies({ search });
+  const { movies, getMovies, loading } = useMovies({ search });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,8 +50,8 @@ function App() {
         </form>
         {error && <p className="text-red-500 text-xs">{error}</p>}
       </header>
-      <main>
-        <Movies response={movies} />
+      <main className="flex justify-center items-center w-full h-full  overflow-auto">
+        {loading ? <p>Loading...</p> : <Movies response={movies} />}
       </main>
     </>
   );

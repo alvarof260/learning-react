@@ -1,23 +1,31 @@
-import {  useState } from "react";
+import { useState, useRef } from "react";
 import { searchMovies } from "../services/movies";
 
-/* import responseJSON from "../mocks/response.json";
-import noResponse from "../mocks/error-response.json"; */
-
-
 export function useMovies({ search }) {
-  // const movies = responseJSON.Search;
   const [movies, setMovies] = useState([]);
-
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const latestSearch = useRef(search);
 
   const getMovies = async () => {
-    console.log("search", search);
-    const newMovies = await searchMovies({search});
-    setMovies(newMovies);
-  }
+    try {
+      if (latestSearch.current === search) return;
+      setLoading(true);
+      setError(null);
+      latestSearch.current = search;
+      const newMovies = await searchMovies({ search });
+      setMovies(newMovies);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return {
-    movies, getMovies
-  }
+    movies,
+    getMovies,
+    loading,
+    error,
+  };
 }

@@ -1,6 +1,6 @@
 function ListOfMovies({ responseMovies }) {
   return (
-    <ul className=" grid grid-cols-1 place-items-center w-full gap-10">
+    <ul className=" grid grid-cols-1 place-items-center w-full h-full py-4 gap-10">
       {responseMovies.map((movie) => {
         return (
           <li key={movie.id} className="flex flex-col items-center">
@@ -23,7 +23,9 @@ function ListOfMovies({ responseMovies }) {
 function NotFoundMovies() {
   return (
     <>
-      <h2>Movies not found</h2>
+      <h2 className=" text-2xl font-bold text-viking-800 text-center">
+        Movies not found
+      </h2>
     </>
   );
 }
@@ -31,7 +33,7 @@ function NotFoundMovies() {
 export function Movies({ response }) {
   const isMovies = response?.length > 0;
   return (
-    <section className="w-full pt-6 px-4">
+    <section className="w-full  px-4">
       {isMovies ? (
         <ListOfMovies responseMovies={response} />
       ) : (
